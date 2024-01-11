@@ -1,0 +1,20 @@
+def solve(input):
+    n = len(input)
+    # iterate through n//2 layers because we are rotating in place and we don't want to rotate the same layer twice
+    for i in range(n//2):
+        # iterate through the elements in the layer from i to n-i-1
+        # i to n - i - 1 means from the first element in the layer to the last element in the layer
+        for j in range(i, n - i - 1):
+            input[i][j], input[j][n-i-1], input[n-i-1][n-j-1], input[n-j-1][i] = input[n-j-1][i], input[i][j], input[j][n-i-1], input[n-i-1][n-j-1]
+    return input
+
+def generate_input():
+    return [[[1, 2], [3, 4]], [[1, 2, 3], [4, 5, 6], [7, 8, 9]]]
+
+def main():
+    input = generate_input()
+    for i, v in enumerate(input):
+        print(f"Test {i}: {solve(v)}")
+
+if __name__ == '__main__':
+    main()
